@@ -1,0 +1,97 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="tricount">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="currency" type="xs:string"/>
+                <xs:element name="description" minOccurs="0" type="xs:string"/>
+                <xs:element name="users">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="user" maxOccurs="30" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="email" minOccurs="0" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="expenses">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="expense" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="transactionType">
+                                            <xs:simpleType>
+                                                <xs:list>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="NORMAL"/>
+                                                            <xs:enumeration value="BALANCE"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:list>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="amount">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:decimal">
+                                                    <xs:minInclusive value="0"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="paiedBy" type="xs:string"/>
+                                        <xs:element name="paiedDate" minOccurs="0"
+                                                    type="xs:string"/>
+                                        <xs:element name="addedDate" type="xs:string"/>
+                                        <xs:element name="repartition">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="type">
+                                                        <xs:simpleType>
+                                                            <xs:list>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:string">
+                                                                        <xs:enumeration
+                                                                            value="simple"/>
+                                                                        <xs:enumeration
+                                                                            value="complex"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:list>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="impact" maxOccurs="unbounded"
+                                                                minOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="user"
+                                                                            type="xs:string"/>
+                                                                <xs:element name="amountOfParts"
+                                                                            type="xs:integer"/>
+                                                                <xs:element name="amount"
+                                                                            type="xs:decimal"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>

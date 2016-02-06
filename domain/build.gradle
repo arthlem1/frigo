@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'me.tatarka.retrolambda'
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.7
+//noinspection GroovyUnusedAssignment
+targetCompatibility = 1.7
+
+configurations {
+    provided
+}
+
+dependencies {
+    def libs = rootProject.ext.libs
+
+    provided libs.daggerCompiler
+    provided libs.javaxAnnotation
+
+    compile libs.dagger
+    compile libs.rxJava
+}
